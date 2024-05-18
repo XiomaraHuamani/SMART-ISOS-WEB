@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import avatar1 from '@images/avatars/avatar-1.png'
+import avatar1 from '@images/avatars/avatar-1.png';
 </script>
 
 <template>
@@ -111,7 +111,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
           <VDivider class="my-2" />
 
           <!-- 👉 Logout -->
-          <VListItem to="/login">
+          <VListItem to="/Auth/AuditPartner/login">
             <template #prepend>
               <VIcon
                 class="me-2"

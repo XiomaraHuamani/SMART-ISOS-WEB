@@ -1,6 +1,7 @@
+import { AUDIT_PARTNER } from "../../utils/constants";
 export default [
   {
-    title: 'Home',
+    title: AUDIT_PARTNER.MENU.spanish.home,
     to: { name: 'root' },
     icon: { icon: 'tabler-smart-home' },
   },
