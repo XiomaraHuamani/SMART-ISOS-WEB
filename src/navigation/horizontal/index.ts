@@ -3,7 +3,7 @@ export default [
     title: "`${AUDIT_PARTNER.MENU.spanish.home}`",
     to: { name: 'root' },
     icon: { icon: 'tabler-smart-home' },
-    disable: true
+    disabled: true
   },
   {
     title: 'Second page',
