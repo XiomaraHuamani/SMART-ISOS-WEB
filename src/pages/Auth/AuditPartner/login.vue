@@ -11,7 +11,7 @@ import authV2MaskLight from '@images/pages/misc-mask-light.png'
 import { VForm } from 'vuetify/components/VForm'
 
 
-import { loginSession } from '@/services/Auth/login'
+import { loginSession } from '@/services/Auth/AuditPartner/login'
 import { AUDIT_PARTNER } from "../../../../src/utils/constants"
 
 const authThemeImg = useGenerateImageVariant(
@@ -61,7 +61,6 @@ const login = async () => {
 
     // useCookie('userAbilityRules').value = userAbilityRules
     // ability.update(userAbilityRules)
-
     // useCookie('userData').value = userData
     useCookie('accessToken').value = token
 

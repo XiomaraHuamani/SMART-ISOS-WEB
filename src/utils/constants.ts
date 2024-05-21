@@ -36,7 +36,9 @@ export const AUDIT_PARTNER = {
       repeatPassword: 'Repetir contraseña ?',
       phone: 'Número de celular móvil',
       country: 'País',
-      createAccount: 'Crear Cuenta'
+      createAccount: 'Crear Cuenta',
+      alreadyHaveAccount: '¿Ya tienes una cuenta?',
+      signInInstead: 'Inicia sesión en su lugar'
     },
     english: {
 

@@ -10,6 +10,7 @@ import authV2RegisterIllustrationLight from '@images/pages/auth-v2-register-illu
 import authV2MaskDark from '@images/pages/misc-mask-dark.png'
 import authV2MaskLight from '@images/pages/misc-mask-light.png'
 
+import { registerService } from '@/services/Auth/AuditPartner/register'
 import logo from '@images/pages/logo_2sinfondo.png'
 import { AUDIT_PARTNER } from "../../../../src/utils/constants"
 
@@ -27,6 +28,8 @@ definePage({
   },
 })
 
+const refVForm = ref<VForm>()
+
 const form = ref({
   names: '',
   lastName: '',
@@ -38,6 +41,29 @@ const form = ref({
 })
 
 const isPasswordVisible = ref(false)
+
+const register = async () => {
+  try {
+    const data = {
+      names: form.value.names,
+      lastName: form.value.lastName,
+      email: form.value.email,
+      password: form.value.password,
+      phone: form.value.phone,
+    }
+    const response = await registerService(data);
+  } catch (error) {
+    
+  }
+}
+
+const onSubmit = () => {
+  refVForm.value?.validate()
+    .then(({ valid: isValid }) => {
+      if (isValid)
+        register()
+    })
+}
 </script>
 
 <template>
@@ -89,15 +115,12 @@ const isPasswordVisible = ref(false)
       >
         <VCardText>
           <h4 class="text-h4 mb-1">
-            Adventure starts here 🚀
+            {{ AUDIT_PARTNER.REGISTER.spanish.createAccount }} 🚀
           </h4>
-          <p class="mb-0">
-            Make your app management easy and fun!
-          </p>
         </VCardText>
 
         <VCardText>
-          <VForm @submit.prevent="() => {}">
+          <VForm ref="refVForm" @submit.prevent="onSubmit">
             <VRow>
               <!-- Names -->
               <VCol cols="12">
@@ -178,9 +201,14 @@ const isPasswordVisible = ref(false)
                 cols="12"
                 class="text-center text-base"
               >
-                <span class="d-inline-block">Already have an account?</span>
+                <span class="d-inline-block">{{ AUDIT_PARTNER.REGISTER.spanish.alreadyHaveAccount }}</span>
                 
-                  Sign in instead
+                <RouterLink
+                  class="text-primary ms-1 d-inline-block"
+                  :to="{ name: 'auth-audit-partner-login' }"
+                >
+                  {{ AUDIT_PARTNER.REGISTER.spanish.signInInstead }}
+                </RouterLink>
                 
               </VCol>
 
