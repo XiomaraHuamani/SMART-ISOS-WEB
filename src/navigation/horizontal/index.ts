@@ -1,6 +1,6 @@
 export default [
   {
-    title: "`${AUDIT_PARTNER.MENU.spanish.home}`",
+    title: AUDIT_PARTNER.MENU.spanish.home,
     to: { name: 'root' },
     icon: { icon: 'tabler-smart-home' },
     disabled: true

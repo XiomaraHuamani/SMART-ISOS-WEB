@@ -78,7 +78,6 @@ const hideTitleAndIcon = configStore.isVerticalNavMini(isHovered)
             max-width="213"
             :src="logo"
             class="auth-logo d-flex align-center gap-x-3"
-            style="z-index: 1001 !important;"
             />
         
         <!-- 👉 Vertical nav actions -->
