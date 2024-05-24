@@ -1,12 +1,14 @@
+import { AUDIT_PARTNER } from "../../utils/constants";
 export default [
   {
-    title: 'Home',
-    to: { name: 'root' },
+    title: AUDIT_PARTNER.MENU.spanish.home,
+    to: { name: 'sgaddsg' },
     icon: { icon: 'tabler-smart-home' },
+    //disabled: true
   },
   {
-    title: 'Second page',
-    to: { name: 'second-page' },
-    icon: { icon: 'tabler-file' },
+    title: 'Ingresos',
+    to: { name: 'ingresos-ingresos' },
+    icon: { icon: 'tabler-shopping-cart' },
   },
 ]

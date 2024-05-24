@@ -1,6 +1,6 @@
 <template>
   <h1 class="d-flex justify-center" style="padding-block-end: 5%;">
-    ventas 🙌
+    Alquiler 🙌
   </h1>
   <v-container class="d-flex justify-center">
     <v-card class="my-card">

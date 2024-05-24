@@ -1,21 +1,32 @@
-<template>
-  <h1 class="d-flex justify-center" style="padding-block-end: 5%;">
-    ventas 🙌
-  </h1>
-  <v-container class="d-flex justify-center">
-    <v-card class="my-card">
-      <v-card-text class="my-card-text">
-        Ventas: comisión del 10% y alquiler 20% por un año debe poner número de RUC y país que pertenece, se da un plazo
-        de 3 meses y se borrará el contenido chocolate.
-      </v-card-text>
-    </v-card>
-  </v-container>
+<script setup lang="ts">
+import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
+import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
+import authV2LoginIllustrationBorderedDark from '@images/pages/auth-v2-login-illustration-bordered-dark.png'
+import authV2LoginIllustrationBorderedLight from '@images/pages/auth-v2-login-illustration-bordered-light.png'
+import authV2LoginIllustrationDark from '@images/pages/auth-v2-login-illustration-dark.png'
+import authV2LoginIllustrationLight from '@images/pages/auth-v2-login-illustration-light.png'
+import logo from '@images/pages/logo_2sinfondo.png'
+import authV2MaskDark from '@images/pages/misc-mask-dark.png'
+import authV2MaskLight from '@images/pages/misc-mask-light.png'
+import { VForm } from 'vuetify/components/VForm'
 
-  <v-row justify="center" style="padding-block-start: 10%;">
-    <v-col cols="4">
+import { AUDIT_PARTNER } from "../../../src/utils/constants"
+
+
+</script>
+
+<template>
+  <v-row justify="center" style="padding-block-start: 15%;">
+    <v-col cols="6">
       <VCard class="mb-6">
         <VCol cols="12">
-          <AppTextField v-model="ISO" autofocus label="Ingrese el numero de RUC" type="text" placeholder="RUC" />
+          <AppTextField v-model="ISO" autofocus :label="`${AUDIT_PARTNER.IMPLEMENT_ISO.spanish.ISO_numero}`" type="text"
+            placeholder="Ingrese ISO sg" />
+        </VCol>
+
+        <VCol cols="12">
+          <AppTextField v-model="ISO" autofocus :label="`${AUDIT_PARTNER.IMPLEMENT_ISO.spanish.ISO_nombre}`" type="text"
+            placeholder="Nombre del sistema de gestion" />
         </VCol>
 
         <VCol cols="12">
@@ -40,14 +51,4 @@
 
     </v-col>
   </v-row>
-
 </template>
-<style scoped>
-.my-card {
-  inline-size: 1000px;
-}
-
-.my-card-text {
-  font-size: 19px;
-}
-</style>

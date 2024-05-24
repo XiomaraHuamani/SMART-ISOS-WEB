@@ -6,6 +6,7 @@ export const layoutConfig: LayoutConfig = {
   app: {
     title: 'my-layout',
     logo: h('img', { src: '/src/assets/logo_2sinfondo.png' }),
+    imgBievenida: h('img', { src: '/src/assets/img-inicio.jpeg' }),
     contentWidth: ContentWidth.Boxed,
     contentLayoutNav: AppContentLayoutNav.Vertical,
     overlayNavFromBreakpoint: breakpointsVuetify.md,
