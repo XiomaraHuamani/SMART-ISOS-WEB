@@ -11,4 +11,9 @@ export default [
     to: { name: 'ingresos-ingresos' },
     icon: { icon: 'tabler-shopping-cart' },
   },
+  {
+    title: 'tablas',
+    to: { name: 'sgregistro-sg' },
+    icon: { icon: 'tabler-key' },
+  },
 ]

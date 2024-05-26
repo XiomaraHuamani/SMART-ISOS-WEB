@@ -9,7 +9,7 @@ import authV2MaskDark from '@images/pages/misc-mask-dark.png'
 import authV2MaskLight from '@images/pages/misc-mask-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
- 
+
 definePage({
   meta: {
     layout: 'blank',
@@ -44,46 +44,19 @@ const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
     </div>
   </RouterLink>
 
-  <VRow
-    no-gutters
-    class="auth-wrapper bg-surface"
-  >
-    <VCol
-      md="8"
-      class="d-none d-md-flex"
-    >
+  <VRow no-gutters class="auth-wrapper bg-surface">
+    <VCol md="8" class="d-none d-md-flex">
       <div class="position-relative bg-background w-100 me-0">
-        <div
-          class="d-flex align-center justify-center w-100 h-100"
-          style="padding-inline: 6.25rem;"
-        >
-          <VImg
-            max-width="613"
-            :src="authThemeImg"
-            class="auth-illustration mt-16 mb-2"
-          />
+        <div class="d-flex align-center justify-center w-100 h-100" style="padding-inline: 6.25rem;">
+          <VImg max-width="613" :src="authThemeImg" class="auth-illustration mt-16 mb-2" />
         </div>
 
-        <img
-          class="auth-footer-mask"
-          :src="authThemeMask"
-          alt="auth-footer-mask"
-          height="280"
-          width="100"
-        >
+        <img class="auth-footer-mask" :src="authThemeMask" alt="auth-footer-mask" height="280" width="100">
       </div>
     </VCol>
 
-    <VCol
-      cols="12"
-      md="4"
-      class="auth-card-v2 d-flex align-center justify-center"
-    >
-      <VCard
-        flat
-        :max-width="500"
-        class="mt-12 mt-sm-0 pa-4"
-      >
+    <VCol cols="12" md="4" class="auth-card-v2 d-flex align-center justify-center">
+      <VCard flat :max-width="500" class="mt-12 mt-sm-0 pa-4">
         <VCardText>
           <h4 class="text-h4 mb-1">
             Welcome to <span class="text-capitalize"> {{ themeConfig.app.title }} </span>! 👋🏻
@@ -93,10 +66,7 @@ const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
           </p>
         </VCardText>
         <VCardText>
-          <VAlert
-            color="primary"
-            variant="tonal"
-          >
+          <VAlert color="primary" variant="tonal">
             <p class="text-sm mb-2">
               Admin Email: <strong>admin@demo.com</strong> / Pass: <strong>admin</strong>
             </p>
@@ -110,75 +80,45 @@ const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
             <VRow>
               <!-- email -->
               <VCol cols="12">
-                <AppTextField
-                  v-model="form.email"
-                  autofocus
-                  label="Email"
-                  type="email"
-                  placeholder="johndoe@email.com"
-                />
+                <AppTextField v-model="form.email" autofocus label="Email" type="email"
+                  placeholder="johndoe@email.com" />
               </VCol>
 
               <!-- password -->
               <VCol cols="12">
-                <AppTextField
-                  v-model="form.password"
-                  label="Password"
-                  placeholder="············"
+                <AppTextField v-model="form.password" label="Password" placeholder="············"
                   :type="isPasswordVisible ? 'text' : 'password'"
                   :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
-                  @click:append-inner="isPasswordVisible = !isPasswordVisible"
-                />
+                  @click:append-inner="isPasswordVisible = !isPasswordVisible" />
 
                 <div class="d-flex align-center flex-wrap justify-space-between mt-2 mb-4">
-                  <VCheckbox
-                    v-model="form.remember"
-                    label="Remember me"
-                  />
-                  <a
-                    class="text-primary ms-2 mb-1"
-                    href="#"
-                  >
+                  <VCheckbox v-model="form.remember" label="Remember me" />
+                  <a class="text-primary ms-2 mb-1" href="#">
                     Forgot Password?
                   </a>
                 </div>
 
-                <VBtn
-                  block
-                  type="submit"
-                >
+                <VBtn block type="submit">
                   Login
                 </VBtn>
               </VCol>
 
               <!-- create account -->
-              <VCol
-                cols="12"
-                class="text-center"
-              >
+              <VCol cols="12" class="text-center">
                 <span>New on our platform?</span>
 
-                <a
-                  class="text-primary ms-2"
-                  href="#"
-                >
+                <a class="text-primary ms-2" href="#">
                   Create an account
                 </a>
               </VCol>
-              <VCol
-                cols="12"
-                class="d-flex align-center"
-              >
+              <VCol cols="12" class="d-flex align-center">
                 <VDivider />
                 <span class="mx-4">or</span>
                 <VDivider />
               </VCol>
 
               <!-- auth providers -->
-              <VCol
-                cols="12"
-                class="text-center"
-              >
+              <VCol cols="12" class="text-center">
                 <AuthProvider />
               </VCol>
             </VRow>
