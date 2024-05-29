@@ -49,6 +49,7 @@ declare module 'vue-router/auto/routes' {
     'products': RouteRecordInfo<'products', '/products', Record<never, never>, Record<never, never>>,
     'second-page': RouteRecordInfo<'second-page', '/second-page', Record<never, never>, Record<never, never>>,
     'sgaddsg': RouteRecordInfo<'sgaddsg', '/SG/addsg', Record<never, never>, Record<never, never>>,
+    'sgejemplo-tabla': RouteRecordInfo<'sgejemplo-tabla', '/SG/ejemplo-tabla', Record<never, never>, Record<never, never>>,
     'sgregistro-sg': RouteRecordInfo<'sgregistro-sg', '/SG/registroSG', Record<never, never>, Record<never, never>>,
   }
 }

@@ -35,10 +35,14 @@ export const AUDIT_PARTNER = {
       password: 'Contraseña',
       repeatPassword: 'Repetir contraseña ?',
       phone: 'Número de celular móvil',
+      doc: 'Documento de identidad',
       country: 'País',
       createAccount: 'Crear Cuenta',
+      bank_account: 'Cuenta bancaria',
+      bank: "Banco",
       alreadyHaveAccount: '¿Ya tienes una cuenta?',
       signInInstead: 'Inicia sesión en su lugar'
+      //requiredValidator: 'Este campo es obligatorio'
     },
     english: {
 

@@ -1,12 +1,11 @@
 <template>
-  <h1 class="d-flex justify-center" style="padding-block-end: 5%;">
+  <!-- <h1 class="d-flex justify-center" style="padding-block-end: 5%;">
     ventas 🙌
-  </h1>
+  </h1> -->
   <v-container class="d-flex justify-center">
     <v-card class="my-card">
       <v-card-text class="my-card-text">
-        Ventas: comisión del 10% y alquiler 20% por un año debe poner número de RUC y país que pertenece, se da un plazo
-        de 3 meses y se borrará el contenido chocolate.
+        Este modulo recibirá comisiones que usted ha recomendado del sistema de gestión, con una duración de 3 meses
       </v-card-text>
     </v-card>
   </v-container>
