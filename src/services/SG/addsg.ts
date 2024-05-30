@@ -1,24 +1,28 @@
 const errors = ref<Record<string, string | undefined>>({
-  Add_RUC: undefined,
+  Add_ISO_number: undefined,
+  Add_ISO_name: undefined,
   Add_Country: undefined,
 })
 
-export interface ingresosData {
-  Add_RUC: string,
+export interface addSGData {
+  Add_ISO_number: string,
+  Add_ISO_name: string,
   Add_Country: string,
 }
 
-export const ingresosService = async ( options : ingresosData ) => {
+export const addSGService = async ( options : addSGData ) => {
   try {
     const  {
-      Add_RUC,
+      Add_ISO_number,
+      Add_ISO_name,
       Add_Country,
     } = options
     const response = await $api('register', {
       
       method: 'POST',
       body: {
-        Add_RUC,
+        Add_ISO_number,
+        Add_ISO_name,
         Add_Country,
       },
       onResponseError({ response }) {
