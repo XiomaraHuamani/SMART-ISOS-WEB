@@ -1,28 +1,17 @@
 <script setup lang="ts">
 import { addSGService } from '@/services/SG/addsg';
 import { VForm } from 'vuetify/components/VForm';
-
 import { AUDIT_PARTNER } from "../../../../src/utils/constants";
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
-//----esta funcion ejecuta en una redireccion en blanco
-// definePage({
-//   meta: {
-//     layout: 'blank',
-//     unauthenticatedOnly: true,
-//   },
-// })
-
-const refVForm = ref<VForm>()
+const refVForm = ref<VForm>();
 
 const form = ref({
   Add_ISO_number: '',
   Add_ISO_name: '',
   Add_Country: '',
   privacyPolicies: false,
-})
-
-
+});
 
 const ingresos = async () => {
   try {
@@ -30,20 +19,34 @@ const ingresos = async () => {
       Add_ISO_number: form.value.Add_ISO_number,
       Add_ISO_name: form.value.Add_ISO_name,
       Add_Country: form.value.Add_Country,
-    }
+    };
     const response = await addSGService(data);
   } catch (error) {
-
+    console.log(error);
   }
-}
+};
 
 const onSubmit = () => {
   refVForm.value?.validate()
     .then(({ valid: isValid }) => {
       if (isValid)
-        ingresos()
-    })
-}
+        ingresos();
+    });
+};
+
+// Watch for changes in Add_ISO_number
+watch(() => form.value.Add_ISO_number, (newValue) => {
+  if (newValue) {
+    form.value.Add_ISO_name = '';
+  }
+});
+
+// Watch for changes in Add_ISO_name
+watch(() => form.value.Add_ISO_name, (newValue) => {
+  if (newValue) {
+    form.value.Add_ISO_number = '';
+  }
+});
 </script>
 
 <template>
@@ -72,7 +75,7 @@ const onSubmit = () => {
         <v-container>
           <v-row justify="center">
             <v-col cols="7" class="d-flex justify-center">
-              <v-btn block type="submit">
+              <v-btn block type="submit" @click="onSubmit">
                 Guardar
               </v-btn>
             </v-col>
@@ -80,7 +83,6 @@ const onSubmit = () => {
         </v-container>
 
       </VCard>
-
     </v-col>
   </v-row>
 </template>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ingresosService } from "../../../services/Ingresos/ingresos.js";
 import { VForm } from 'vuetify/components/VForm';
-
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { AUDIT_PARTNER } from "../../../../src/utils/constants";
 
 //----esta funcion ejecuta en una redireccion en blanco
@@ -13,6 +13,8 @@ import { AUDIT_PARTNER } from "../../../../src/utils/constants";
 //   },
 // })
 
+const router = useRouter();
+
 const refVForm = ref<VForm>()
 
 const form = ref({
@@ -21,8 +23,6 @@ const form = ref({
   privacyPolicies: false,
 })
 
-
-
 const ingresos = async () => {
   try {
     const data = {
@@ -30,23 +30,33 @@ const ingresos = async () => {
       Add_Country: form.value.Add_Country,
     }
     const response = await ingresosService(data);
+    // Handle response if needed
   } catch (error) {
-
+    console.error(error);
   }
 }
 
 const onSubmit = () => {
-  refVForm.value?.validate()
-    .then(({ valid: isValid }) => {
-      if (isValid)
-        ingresos()
-    })
+  refVForm.value?.validate().then(({ valid: isValid }) => {
+    if (isValid) {
+      if (form.value.Add_RUC && form.value.Add_Country) {
+        ingresos().then(() => {
+          router.push('/otra-pagina'); // Cambia '/otra-pagina' a la ruta a la que deseas redirigir
+        });
+      } else {
+        alert("Por favor, complete todos los campos.");
+      }
+    }
+  });
+}
+
+// Validación para que Add_RUC solo acepte números
+const validateRUC = (value: string) => {
+  return /^\d+$/.test(value) || "El RUC debe ser un número";
 }
 </script>
+
 <template>
-  <!-- <h1 class="d-flex justify-center" style="padding-block-end: 5%;">
-    ventas 🙌
-  </h1> -->
   <v-container class="d-flex justify-center">
     <v-card class="my-card">
       <v-card-text class="my-card-text">
@@ -59,34 +69,42 @@ const onSubmit = () => {
     <v-col cols="4">
       <VCard class="mb-6">
         <VCol cols="12">
-          <AppTextField v-model="form.Add_RUC" autofocus label="Ingrese el numero de RUC" type="text"
-            placeholder="RUC" />
+          <AppTextField 
+            v-model="form.Add_RUC" 
+            autofocus 
+            label="Ingrese el numero de RUC" 
+            type="text" 
+            placeholder="RUC"
+            :rules="[validateRUC]"
+          />
         </VCol>
 
         <VCol cols="12">
-          <VSelect clearable v-model="form.Add_Country"
+          <VSelect 
+            clearable 
+            v-model="form.Add_Country"
             :items="['Afganistán', 'Albania', 'Alemania', 'Andorra', 'Angola', 'Arabia Saudita', 'Argelia', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaiyán', 'Bahamas', 'Bangladés', 'Barbados', 'Baréin', 'Bélgica', 'Belice', 'Benín', 'Bielorrusia', 'Birmania', 'Bolivia', 'Bosnia y Herzegovina', 'Botsuana', 'Brasil', 'Brunéi', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Bután', 'Cabo Verde', 'Camboya', 'Camerún', 'Canadá', 'Catar', 'Chad', 'Chile', 'China', 'Chipre', 'Ciudad del Vaticano', 'Colombia', 'Comoras', 'Corea del Norte', 'Corea del Sur', 'Costa de Marfil', 'Costa Rica', 'Croacia', 'Cuba', 'Dinamarca', 'Dominica', 'Ecuador', 'Egipto', 'El Salvador', 'Emiratos Árabes Unidos', 'Eritrea', 'Eslovaquia', 'Eslovenia', 'España', 'Estados Unidos', 'Estonia', 'Etiopía', 'Filipinas', 'Finlandia', 'Fiyi', 'Francia', 'Gabón', 'Gambia', 'Georgia', 'Ghana', 'Granada', 'Grecia', 'Guatemala', 'Guyana', 'Guinea', 'Guinea ecuatorial', 'Guinea-Bisáu', 'Haití', 'Honduras', 'Hungría', 'India', 'Indonesia', 'Irak', 'Irán', 'Irlanda', 'Islandia', 'Islas Marshall', 'Islas Salomón', 'Israel', 'Italia', 'Jamaica', 'Japón', 'Jordania', 'Kazajistán', 'Kenia', 'Kirguistán', 'Kiribati', 'Kuwait', 'Laos', 'Lesoto', 'Letonia', 'Líbano', 'Liberia', 'Libia', 'Liechtenstein', 'Lituania', 'Luxemburgo', 'Madagascar', 'Malasia', 'Malaui', 'Maldivas', 'Malí', 'Malta', 'Marruecos', 'Mauricio', 'Mauritania', 'México', 'Micronesia', 'Moldavia', 'Mónaco', 'Mongolia', 'Montenegro', 'Mozambique', 'Namibia', 'Nauru', 'Nepal', 'Nicaragua', 'Níger', 'Nigeria', 'Noruega', 'Nueva Zelanda', 'Omán', 'Países Bajos', 'Pakistán', 'Palaos', 'Palestina', 'Panamá', 'Papúa Nueva Guinea', 'Paraguay', 'Perú', 'Polonia', 'Portugal', 'Reino Unido', 'República Centroafricana', 'República Checa', 'República de Macedonia', 'República del Congo', 'República Democrática del Congo', 'República Dominicana', 'República Sudafricana', 'Ruanda', 'Rumanía', 'Rusia', 'Samoa', 'San Cristóbal y Nieves', 'San Marino', 'San Vicente y las Granadinas', 'Santa Lucía', 'Santo Tomé y Príncipe', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leona', 'Singapur', 'Siria', 'Somalia', 'Sri Lanka', 'Suazilandia', 'Sudán', 'Sudán del Sur', 'Suecia', 'Suiza', 'Surinam', 'Tailandia', 'Tanzania', 'Tayikistán', 'Timor Oriental', 'Togo', 'Tonga', 'Trinidad y Tobago', 'Túnez', 'Turkmenistán', 'Turquía', 'Tuvalu', 'Ucrania', 'Uganda', 'Uruguay', 'Uzbekistán', 'Vanuatu', 'Venezuela', 'Vietnam', 'Yemen', 'Yibuti', 'Zambia', 'Zimbabue']"
-            :label="`${AUDIT_PARTNER.REGISTER.spanish.country}`" placeholder="Seleccione" item-text="text"
-            item-value="value" />
-
+            :label="`${AUDIT_PARTNER.REGISTER.spanish.country}`" 
+            placeholder="Seleccione" 
+            item-text="text"
+            item-value="value"
+          />
         </VCol>
 
         <v-container>
           <v-row justify="center">
             <v-col cols="7" class="d-flex justify-center">
-              <v-btn block type="submit">
+              <v-btn block type="submit" @click="onSubmit">
                 Guardar
               </v-btn>
             </v-col>
           </v-row>
         </v-container>
-
       </VCard>
-
     </v-col>
   </v-row>
-
 </template>
+
 <style scoped>
 .my-card {
   inline-size: 1000px;

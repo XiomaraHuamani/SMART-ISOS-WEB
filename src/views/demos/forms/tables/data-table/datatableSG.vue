@@ -1,5 +1,6 @@
 <script setup>
-import data from '@/views/demos/forms/tables/data-table/datatable'
+//import data1 from '@/views/demos/forms/tables/data-table/dataAddSG';
+import data1 from '@/views/demos/forms/tables/data-table/datatable';
 
 const userList = ref([])
 
@@ -13,64 +14,88 @@ const options = ref({
 // headers
 const headers = [
   {
-    title: 'NOMBRE DE LA EMPRESA',
-    key: 'fullName',
+    title: 'Sistema G.',
+    key: 'tipo_sistema',
   },
   {
-    title: 'PAIS',
-    key: 'email',
+    title: 'NOMBRE',
+    key: 'nombre',
   },
   {
-    title: 'RUC',
-    key: 'startDate',
+    title: 'Pais',
+    key: 'pais',
   },
-  {
-    title: 'INGRESOS',
-    key: 'salary',
-  },
-  {
-    title: 'ISO',
-    key: 'age',
-  },
+  // {
+  //   title: 'STATUS',
+  //   key: 'status',
+  // },
   {
     title: 'ESTADO',
     key: 'status',
   },
 ]
 
+const resolve_tipo_sistema = tipo_sistema => {
+  if (tipo_sistema === 1)
+    return {
+      text: 'ISO',
+
+    }
+  else if (tipo_sistema === 2)
+    return {
+      text: 'SG',
+    }
+}
+
 const resolveStatusVariant = status => {
   if (status === 1)
     return {
       color: 'success',
-      text: 'PAGADO',
+      text: 'ACEPTADO',
     }
   else if (status === 2)
     return {
       color: 'error',
-      text: 'EN PROCESO',
+      text: 'NO ACEPTADO',
     }
+  // else if (status === 3)
+  //   return {
+  //     color: 'error',
+  //     text: 'Rejected',
+  //   }
+  // else if (status === 4)
+  //   return {
+  //     color: 'warning',
+  //     text: 'Resigned',
+  //   }
+  // else
+  //   return {
+  //     color: 'info',
+  //     text: 'Applied',
+  //   }
 }
 
 onMounted(() => {
-  userList.value = JSON.parse(JSON.stringify(data))
+  userList.value = JSON.parse(JSON.stringify(data1))
 })
 </script>
 
 <template>
   <VDataTable :headers="headers" :items="userList" :items-per-page="options.itemsPerPage" :page="options.page"
     :options="options">
-    <template #item.fullName="{ item }">
+    <!-- tipo_sistema: 'ISO' - 'sg' -->
+    <template #item.tipo_sistema="{ item }">
       <div class="d-flex align-center">
-        <div class="d-flex flex-column ms-3">
-          <span class="d-block font-weight-medium text-high-emphasis text-truncate">{{ item.fullName }}</span>
-        </div>
+        <VChip class="font-weight-medium" size="small">
+          {{ resolve_tipo_sistema(item.status).text }}
+        </VChip>
       </div>
     </template>
 
     <!-- status -->
     <template #item.status="{ item }">
       <VChip :color="resolveStatusVariant(item.status).color" class="font-weight-medium" size="small">
-        {{ resolveStatusVariant(item.status).text }}
+        {{ resolveStatusVariant(item.status).tipo_sistema }}
       </VChip>
     </template>
 
