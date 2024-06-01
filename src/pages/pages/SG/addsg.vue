@@ -2,7 +2,8 @@
 import { addSGService } from '@/services/SG/addsg';
 import { VForm } from 'vuetify/components/VForm';
 
-import { AUDIT_PARTNER } from "../../../src/utils/constants";
+import { AUDIT_PARTNER } from "../../../../src/utils/constants";
+import { ref } from 'vue';
 
 //----esta funcion ejecuta en una redireccion en blanco
 // definePage({

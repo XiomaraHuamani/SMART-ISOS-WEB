@@ -29,11 +29,11 @@ export default [
       },
       {
         title: 'Ingresos',
-        to: 'dashboards-crm',
+        to: 'pages-ingresos-ingresos',
       },
     ],
-    badgeContent: '5',
-    badgeClass: 'bg-error',
+    //badgeContent: '5',
+    //badgeClass: 'bg-error',
   },
   // {
   //   title: 'Front Pages',
