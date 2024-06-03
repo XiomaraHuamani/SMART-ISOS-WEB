@@ -29,7 +29,7 @@ export default [
       },
       {
         title: 'Ingresos',
-        to: 'pages-ingresos-registro-ingresos',
+        to: 'pages-ingresos-ingresos',
       },
     ],
     //badgeContent: '5',
