@@ -24,16 +24,21 @@ watch([
 
 <template>
   <VRow>
-
-    <v-container class="d-flex justify-center">
-      <v-card class="my-card">
-        <v-card-text class="my-card-text">
+    
+    <v-container fluid>
+    <v-card class="my-card">
+      <v-row > 
+        <v-col class="d-flex justify-end" style>
+          <v-btn class="my-2" @click="onAddClick">Agregar</v-btn>
+        </v-col>
+      </v-row>
+      <!-- <v-card-text class="my-card-text">
         Chocolate sesame snaps pie carrot cake pastry pie lollipop muffin.
         Carrot cake dragée chupa chups jujubes. Macaroon liquorice cookie
         wafer tart marzipan bonbon. Gingerbread jelly-o dragée
         chocolate.
-        </v-card-text>
-      </v-card>
+      </v-card-text> -->
+    </v-card>
     </v-container>
 
     <!-- 👉 Row Editing via Dialog -->
@@ -50,5 +55,14 @@ watch([
       </AppCardCode>
     </VCol>
 
+    
+
   </VRow>
 </template>
+
+<style scoped>
+.my-card {
+  max-inline-size: 1600px; /* Reemplaza max-width con max-inline-size */
+}
+
+</style>
