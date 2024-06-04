@@ -1,7 +1,7 @@
 <script setup>
 // import data2 from '@/views/demos/forms/tables/data-table/dataFilterSG';
 //import data2 from 'A:/ISOS_WEB/SMART-OSH-FRONTEND202/src/views/demos/forms/tables/data-table/dataFilterSG';
-import data2 from '@/views/demos/forms/tables/data-table/datatable';
+import data2 from '@/views/demos/forms/tables/data-table/datatablePrueba2';
 
 const userList = ref([])
 
@@ -15,7 +15,7 @@ const options = ref({
 // headers
 const headers = [
   {
-    title: 'RUC',
+    title: 'RUC', 
     key: 'RUC',
   },
   {

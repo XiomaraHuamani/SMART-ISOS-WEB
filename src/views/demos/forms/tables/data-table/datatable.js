@@ -3,7 +3,7 @@ import avatar4 from '@images/avatars/avatar-4.png'
 import avatar6 from '@images/avatars/avatar-6.png'
 import avatar7 from '@images/avatars/avatar-7.png'
 import avatar8 from '@images/avatars/avatar-8.png'
-//data = [
+// const data = [
 //   {
 //     responsiveId: '',
 //     id: 95,

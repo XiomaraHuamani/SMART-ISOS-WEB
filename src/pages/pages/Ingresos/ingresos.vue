@@ -36,19 +36,23 @@ const ingresos = async () => {
   }
 }
 
+// const onSubmit = () => {
+//   refVForm.value?.validate().then(({ valid: isValid }) => {
+//     if (isValid) {
+//       if (form.value.Add_RUC && form.value.Add_Country) {
+//         ingresos().then(() => {
+//           router.push('/otra-pagina'); // Cambia '/otra-pagina' a la ruta a la que deseas redirigir
+//         });
+//       } else {
+//         alert("Por favor, complete todos los campos.");
+//       }
+//     }
+//   });
+// }
+
 const onSubmit = () => {
-  refVForm.value?.validate().then(({ valid: isValid }) => {
-    if (isValid) {
-      if (form.value.Add_RUC && form.value.Add_Country) {
-        ingresos().then(() => {
-          router.push('/otra-pagina'); // Cambia '/otra-pagina' a la ruta a la que deseas redirigir
-        });
-      } else {
-        alert("Por favor, complete todos los campos.");
-      }
-    }
-  });
-}
+  router.push('/pages/Ingresos/registroIngresos');  //pages-ingresos-registro-ingresos   ///pages/Ingresos/registroIngresos
+};
 
 // Validación para que Add_RUC solo acepte números
 const validateRUC = (value: string) => {

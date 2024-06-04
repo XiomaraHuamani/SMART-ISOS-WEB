@@ -1,6 +1,6 @@
 <script setup>
 //import data1 from '@/views/demos/forms/tables/data-table/dataAddSG';
-import data1 from '@/views/demos/forms/tables/data-table/datatable';
+import data1 from '@/views/demos/forms/tables/data-table/datatablePrueba1';
 
 const userList = ref([])
 
@@ -14,7 +14,7 @@ const options = ref({
 // headers
 const headers = [
   {
-    title: 'Sistema G.',
+    title: 'Sistema G.', 
     key: 'tipo_sistema',
   },
   {
@@ -23,12 +23,8 @@ const headers = [
   },
   {
     title: 'Pais',
-    key: 'pais',
+    key: 'Pais',
   },
-  // {
-  //   title: 'STATUS',
-  //   key: 'status',
-  // },
   {
     title: 'ESTADO',
     key: 'status',
@@ -58,21 +54,6 @@ const resolveStatusVariant = status => {
       color: 'error',
       text: 'NO ACEPTADO',
     }
-  // else if (status === 3)
-  //   return {
-  //     color: 'error',
-  //     text: 'Rejected',
-  //   }
-  // else if (status === 4)
-  //   return {
-  //     color: 'warning',
-  //     text: 'Resigned',
-  //   }
-  // else
-  //   return {
-  //     color: 'info',
-  //     text: 'Applied',
-  //   }
 }
 
 onMounted(() => {
@@ -95,7 +76,7 @@ onMounted(() => {
     <!-- status -->
     <template #item.status="{ item }">
       <VChip :color="resolveStatusVariant(item.status).color" class="font-weight-medium" size="small">
-        {{ resolveStatusVariant(item.status).tipo_sistema }}
+        {{ resolveStatusVariant(item.status).text }}
       </VChip>
     </template>
 
