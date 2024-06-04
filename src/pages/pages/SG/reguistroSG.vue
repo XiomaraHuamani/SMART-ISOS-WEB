@@ -30,7 +30,7 @@ watch([
       <v-row > 
         <v-col class="d-flex justify-end" style>
           <v-btn class="my-2" @click="onAddClick">Agregar</v-btn>
-        </v-col>
+        </v-col>      
       </v-row>
       <!-- <v-card-text class="my-card-text">
         Chocolate sesame snaps pie carrot cake pastry pie lollipop muffin.
