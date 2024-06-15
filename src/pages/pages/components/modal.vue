@@ -1,9 +1,10 @@
 <script setup>
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar';
+import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import {
   VList,
   VListItem,
-} from 'vuetify/components/VList';
+} from 'vuetify/components/VList'
+import { VTextarea } from 'vuetify/lib/components/index.mjs';
 
 const props = defineProps({
   isDialogVisible: {
@@ -83,7 +84,7 @@ watch(() => props.isDialogVisible, () => {
   <VDialog
     max-width="600"
     :model-value="props.isDialogVisible"
-    :height="$vuetify.display.smAndUp ? '531' : '100%'"
+    :height="$vuetify.display.smAndUp ? '651' : '100%'"
     :fullscreen="$vuetify.display.width < 600"
     class="app-bar-search-dialog"
     @update:model-value="dialogModelValueUpdate"
@@ -100,25 +101,10 @@ watch(() => props.isDialogVisible, () => {
       >
         <!-- 👉 Search Input -->
         <VTextField
-          ref="refSearchInput"
-          v-model="searchQueryLocal"
-          autofocus
           density="compact"
           variant="plain"
-          class="app-bar-search-input"
-          @keyup.esc="clearSearchAndCloseDialog"
-          @keydown="getFocusOnSearchList"
-          @update:model-value="$emit('search', searchQueryLocal)"
+        
         >
-          <!-- 👉 Prepend Inner -->
-          <template #prepend-inner>
-            <div class="d-flex align-center text-high-emphasis me-1">
-              <VIcon
-                size="24"
-                icon="tabler-search"
-              />
-            </div>
-          </template>
 
           <!-- 👉 Append Inner -->
           <template #append-inner>

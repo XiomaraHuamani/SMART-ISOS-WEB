@@ -1,7 +1,8 @@
 <script setup>
-import { useConfigStore } from '@core/stores/config';
-import Shepherd from 'shepherd.js';
-import { withQuery } from 'ufo';
+import Shepherd from 'shepherd.js'
+import { withQuery } from 'ufo'
+import { useConfigStore } from '@core/stores/config'
+import * as demoCode from '@/views/demos/forms/form-layout/demoCodeFormLayout'
 
 defineOptions({
   // 👉 Is App Search Bar Visible
@@ -167,31 +168,25 @@ const redirectToSuggestedPage = selected => {
   closeSearchBar()
 }
 
-const LazyAppBarSearch = defineAsyncComponent(() => import('@core/components/AppBarSearch.vue'))
+const LazyAppBarSearch = defineAsyncComponent(() => import('../components/modal.vue'))
 </script>
 
 <template>
-  <div
+
+<div
     class="d-flex align-center cursor-pointer"
     v-bind="$attrs"
     style="user-select: none;"
     @click="isAppSearchBarVisible = !isAppSearchBarVisible"
   >
-    <!-- 👉 Search Trigger button -->
-    <!-- close active tour while opening search bar using icon -->
-    <IconBtn @click="Shepherd.activeTour?.cancel()">
-      <VIcon icon="tabler-search" />
-    </IconBtn>
+    
+    <v-btn class="my-2" @click="Shepherd.activeTour?.cancel()">
+            Agregar
+    </v-btn>
 
-    <span
-      v-if="configStore.appContentLayoutNav === 'vertical'"
-      class="d-none d-md-flex align-center text-disabled ms-2"
-      @click="Shepherd.activeTour?.cancel()"
-    >
-      <span class="me-2">Search</span>
-      <span class="meta-key">&#8984;K</span>
-    </span>
+
   </div>
+
 
   <!-- 👉 App Bar Search -->
   <LazyAppBarSearch
@@ -200,94 +195,14 @@ const LazyAppBarSearch = defineAsyncComponent(() => import('@core/components/App
     :is-loading="isLoading"
     @search="searchQuery = $event"
   >
-    <!-- suggestion -->
-    <template #suggestions>
-      <VCardText class="app-bar-search-suggestions pa-12">
-        <VRow v-if="suggestionGroups">
-          <VCol
-            v-for="suggestion in suggestionGroups"
-            :key="suggestion.title"
-            cols="12"
-            sm="6"
-          >
-            <p
-              class="custom-letter-spacing text-disabled text-uppercase py-2 px-4 mb-0"
-              style="font-size: 0.75rem; line-height: 0.875rem;"
-            >
-              {{ suggestion.title }}
-            </p>
-            <VList class="card-list">
-              <VListItem
-                v-for="item in suggestion.content"
-                :key="item.title"
-                class="app-bar-search-suggestion mx-4 mt-2"
-                @click="redirectToSuggestedPage(item)"
-              >
-                <VListItemTitle>{{ item.title }}</VListItemTitle>
-                <template #prepend>
-                  <VIcon
-                    :icon="item.icon"
-                    size="20"
-                    class="me-n1"
-                  />
-                </template>
-              </VListItem>
-            </VList>
-          </VCol>
-        </VRow>
-      </VCardText>
-    </template>
-
-    <!-- no data suggestion -->
-    <template #noDataSuggestion>
-      <div class="mt-9">
-        <span class="d-flex justify-center text-disabled mb-2">Try searching for</span>
-        <h6
-          v-for="suggestion in noDataSuggestions"
-          :key="suggestion.title"
-          class="app-bar-search-suggestion text-h6 font-weight-regular cursor-pointer py-2 px-4"
-          @click="redirectToSuggestedPage(suggestion)"
+  <template #suggestions>
+    <AppCardCode
+          title="Registro"
+          :code="demoCode.verticalFormWithIcons"
         >
-          <VIcon
-            size="20"
-            :icon="suggestion.icon"
-            class="me-2"
-          />
-          <span>{{ suggestion.title }}</span>
-        </h6>
-      </div>
-    </template>
-
-    <!-- search result -->
-    <template #searchResult="{ item }">
-      <VListSubheader class="text-disabled custom-letter-spacing font-weight-regular ps-4">
-        {{ item.title }}
-      </VListSubheader>
-      <VListItem
-        v-for="list in item.children"
-        :key="list.title"
-        :to="list.url"
-        @click="closeSearchBar"
-      >
-        <template #prepend>
-          <VIcon
-            size="20"
-            :icon="list.icon"
-            class="me-n1"
-          />
-        </template>
-        <template #append>
-          <VIcon
-            size="20"
-            icon="tabler-corner-down-left"
-            class="enter-icon flip-in-rtl"
-          />
-        </template>
-        <VListItemTitle>
-          {{ list.title }}
-        </VListItemTitle>
-      </VListItem>
-    </template>
+          <DemoFormLayoutVerticalFormWithIcons />
+    </AppCardCode>
+  </template>
   </LazyAppBarSearch>
 </template>
 
@@ -296,7 +211,7 @@ const LazyAppBarSearch = defineAsyncComponent(() => import('@core/components/App
 
 .meta-key {
   border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
-  border-radius: 6px;
+  border-radius: 50px;
   block-size: 1.5625rem;
   font-size: 0.8125rem;
   line-height: 1.3125rem;

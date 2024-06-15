@@ -4150,8 +4150,9 @@ const checkbox = ref(false)
 </template>
 ` }
 
-export const verticalFormWithIcons = { ts: `<script lang="ts" setup>
-const firstName = ref('')
+export const verticalFormWithIcons = { ts: 
+  `<script lang="ts" setup>
+const nombre de la empresa = ref('')
 const email = ref('')
 const mobile = ref<number>()
 const password = ref<string>()

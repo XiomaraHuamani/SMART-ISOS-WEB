@@ -12,7 +12,8 @@ export const redirects = [
       const userData = useCookie('userData')
       const userRole = userData.value?.role
       if (userRole === 'admin')
-        return { name: 'dashboards-crm' }
+        //return { name: 'dashboards-crm' }
+        return { name: 'dashboards-start' }
       if (userRole === 'client')
         return { name: 'access-control' }
       
